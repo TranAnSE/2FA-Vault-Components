@@ -1,3 +1,4 @@
 export {
-    useErrorHandler
+    useErrorHandler,
+    configureErrorHandlerRouter
 } from './errorHandler'

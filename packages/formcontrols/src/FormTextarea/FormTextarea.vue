@@ -18,6 +18,10 @@
             default: '',
             required: true
         },
+        inputType: {
+            type: String,
+            default: 'text'
+        },
         errorMessage: [String],
         placeholder: {
             type: String,

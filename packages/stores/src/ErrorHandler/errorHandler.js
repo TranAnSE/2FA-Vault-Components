@@ -1,6 +1,26 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+/**
+ * Optional router bridge.
+ *
+ * Pinia setup stores do not have access to `this.$router` (that property only
+ * exists on Options-API stores backed by a component instance). When this
+ * store is called from a non-component context — such as an Axios response
+ * interceptor in a service module — `this.$router` is undefined and any
+ * attempt to use it throws, silently swallowing the error.
+ *
+ * Consumers that want `show()` / `notFound()` to navigate must register the
+ * router once during app bootstrap via `configureErrorHandlerRouter(router)`.
+ * If no router is registered, the navigation is skipped gracefully so the
+ * error state is still exposed for the UI to react to.
+ */
+let registeredRouter = null
+
+export function configureErrorHandlerRouter(router) {
+    registeredRouter = router
+}
+
 export const useErrorHandler = defineStore('errorHandler', () => {
 
     // STATE
@@ -22,7 +42,7 @@ export const useErrorHandler = defineStore('errorHandler', () => {
     }
 
     /**
-     * 
+     *
      */
     function parse(error) {
         $reset
@@ -54,20 +74,26 @@ export const useErrorHandler = defineStore('errorHandler', () => {
             reasons.value = new Array(reasons.value)
         }
     }
-    
+
     /**
-     * 
+     * Navigate to the generic error page. Falls back gracefully when no
+     * router has been registered (e.g. when called from a service module
+     * before the app bootstrap completes).
      */
     function show(error) {
         parse(error)
-        this.$router.push({ name: 'genericError' })
+        if (registeredRouter) {
+            registeredRouter.push({ name: 'genericError' })
+        }
     }
 
     /**
      * Push the user to the notFound error page
      */
     function notFound() {
-        this.$router.push({ name: '404' })
+        if (registeredRouter) {
+            registeredRouter.push({ name: '404' })
+        }
     }
 
     return {

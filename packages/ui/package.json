@@ -35,7 +35,7 @@
         "vue-tsc": "^3.2.4"
     },
     "peerDependencies": {
-        "@2fauth/formcontrols": "^0.0.0",
+        "@2fauth/formcontrols": "workspace:*",
         "@kyvg/vue3-notification": "^3.4.2",
         "@lucide/vue": "^1.17.0",
         "@vueuse/components": "^14.3.0",

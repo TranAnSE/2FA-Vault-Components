@@ -13,6 +13,12 @@ stats.html
 histoire/dist/*
 resources
 
+# Build output — must never be committed. A stale tracked dist caused the
+# extension build to fail on a missing @2fauth/ui StackLayout export. Builds
+# are produced on demand via `pnpm run build` (prepack) and consumed through
+# workspace links, so committing them only causes drift.
+packages/*/dist
+
 # Editor directories and files
 .idea
 .DS_Store
