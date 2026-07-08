@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/vue'
+import { fireEvent, screen } from '@testing-library/vue'
 import { describe, expect, it } from 'vitest'
+import { render } from '../test/render.js'
 import VueButton from './VueButton.vue'
 
 describe('button', () => {
