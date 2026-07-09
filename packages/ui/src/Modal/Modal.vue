@@ -3,10 +3,13 @@
     import { useNotify } from '../Notify'
     import { VueFooterContent } from '../VueFooterContent'
 
-    const isActive = defineModel('isActive')
+    // Visibility is driven by the DEFAULT model so callers can use the
+    // idiomatic `<Modal v-model="showX">` syntax. Every existing consumer
+    // (webapp + extension + this package's own story) binds the default
+    // model, so defineModel() with no name is the correct contract.
+    const isActive = defineModel()
     const showFooterMenu = defineModel('showFooterMenu')
     const props = defineProps({
-        modelValue: Boolean,
         isFullHeight:  {
             type: Boolean,
             default: false
