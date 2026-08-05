@@ -6,6 +6,8 @@
         "build": "vite build",
         "build:types": "node -e \"require('node:fs').rmSync('dist/types',{recursive:true,force:true})\" && vue-tsc -p tsconfig.types.json",
         "watch": "vite build --watch",
+        "test": "vitest run",
+        "test:watch": "vitest",
         "typecheck": "vue-tsc -p tsconfig.app.json --noEmit",
         "prepack": "pnpm run build && pnpm run build:types"
     },
