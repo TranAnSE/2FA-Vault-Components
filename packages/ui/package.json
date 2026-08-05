@@ -4,16 +4,19 @@
     "version": "0.1.0",
     "scripts": {
         "build": "vite build",
+        "build:types": "node -e \"require('node:fs').rmSync('dist/types',{recursive:true,force:true})\" && vue-tsc -p tsconfig.types.json",
         "watch": "vite build --watch",
         "typecheck": "vue-tsc -p tsconfig.app.json --noEmit",
-        "prepack": "pnpm run build"
+        "prepack": "pnpm run build && pnpm run build:types"
     },
     "exports": {
         ".": {
-            "import": "./dist/index.mjs"
+            "import": "./dist/index.mjs",
+            "types": "./dist/types/index.d.ts"
         }
     },
     "main": "./dist/index.mjs",
+    "types": "./dist/types/index.d.ts",
     "dependencies": {
         "@2fauth/formcontrols": "link:..\\formcontrols"
     },
