@@ -1,7 +1,7 @@
 {
     "name": "@2fauth/formcontrols",
     "type": "module",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "scripts": {
         "build": "vite build",
         "build:types": "node -e \"require('node:fs').rmSync('dist/types',{recursive:true,force:true})\" && vue-tsc -p tsconfig.types.json",
