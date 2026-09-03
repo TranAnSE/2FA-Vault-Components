@@ -310,7 +310,9 @@
     function copyOTP(otp, permit_closing) {
         copy(otp.replace(/ /g, ''))
 
-        if (copied) {
+        // `copied` is a Ref from @vueuse/core: test its value, not the object
+        // (a Ref object is always truthy).
+        if (copied.value) {
             if (props.preferences.kickUserAfter == -1 && (permit_closing || false) === true) {
                 emit('kickme')
             } else if(props.preferences.closeOtpOnCopy && (permit_closing || false) === true) {

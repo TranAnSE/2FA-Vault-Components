@@ -60,12 +60,25 @@
 
     const emit = defineEmits(['stepping-started', 'stepping-ended', 'stepped-up'])
 
+    let warnedAboutInvalidGeneratedAt = false
+
     /**
      * Starts stepping
      */
     const startStepping = (generated_at = 0) => {
         reset()
         generatedAt.value = generated_at != 0 ? generated_at : props.generated_at
+
+        // Guard against invalid generated_at: the stepping math would produce
+        // NaN (% period) and setTimeout(..., NaN * 1000) fires immediately,
+        // risking a tight loop in the consuming app.
+        if (!Number.isFinite(generatedAt.value) || generatedAt.value <= 0) {
+            if (import.meta.env?.DEV && !warnedAboutInvalidGeneratedAt) {
+                warnedAboutInvalidGeneratedAt = true
+                console.warn('[DotsController] Invalid generated_at:', generatedAt.value, '- stepping skipped')
+            }
+            return
+        }
 
         emit('stepping-started', initialStepIndex.value)
 

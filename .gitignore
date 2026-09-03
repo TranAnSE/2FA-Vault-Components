@@ -29,3 +29,6 @@ packages/*/dist
 *.sw?
 
 *.key
+.env
+.env.*
+!.env.example
