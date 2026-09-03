@@ -19,13 +19,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      # pnpm/action-setup only needs a Node runtime, which ubuntu-latest
+      # ships preinstalled. actions/setup-node is deliberately omitted: its
+      # post step tried to save a pnpm store cache for a store this job
+      # never creates (no install happens here) and failed the whole job.
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
 
       - name: Audit pnpm-lock.yaml
         run: pnpm audit --prod
