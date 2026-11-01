@@ -222,10 +222,16 @@
                     </div>
                 </div>
             </transition>
-            <!-- pin toggle (fork-cell contract: state owned by the consumer) -->
+            <!-- pin toggle (fork-cell contract: state owned by the consumer; the fork does not gate the pin on the favorites feature) -->
             <transition name="fadeInOut">
-                <button v-if="!props.inManagementMode && props.preferences.enableFavorites" type="button" class="tfa-cell tfa-pin button is-ghost pr-0" :class="{ 'has-text-warning': props.isPinned, 'has-text-grey': !props.isPinned }" :title="$t('tooltip.toggle_pin')" @click.stop="$emit('toggle-pin', props.account.id)" :aria-label="$t('tooltip.toggle_pin')">
+                <button v-if="!props.inManagementMode" type="button" class="tfa-cell tfa-pin button is-ghost pr-0" :class="{ 'has-text-warning': props.isPinned, 'has-text-grey': !props.isPinned }" :title="$t('tooltip.toggle_pin')" @click.stop="$emit('toggle-pin', props.account.id)" :aria-label="$t('tooltip.toggle_pin')">
                     <LucidePin />
+                </button>
+            </transition>
+            <!-- favorite toggle (fork: its own cell when not in management mode) -->
+            <transition name="fadeInOut">
+                <button v-if="!props.inManagementMode && canShowStar" type="button" class="tfa-cell tfa-favorite button is-ghost pr-0" :class="{ 'has-text-warning': props.account.is_favorite, 'has-text-grey': !props.account.is_favorite }" :title="$t('tooltip.toggle_favorite')" @click.stop="$emit('toggle-is-favorite', props.account.id)" :aria-label="$t('tooltip.toggle_favorite')">
+                    <LucideStar :fill="props.account.is_favorite ? '#ffb400' : 'none'" :stroke-width="1.5" />
                 </button>
             </transition>
             <!-- tags + vault badge (fork-cell contract: render-only) -->
@@ -276,7 +282,7 @@
             </button>
         </td>
         <!-- pin -->
-        <td v-if="props.preferences.enableFavorites" class="is-narrow">
+        <td class="is-narrow">
             <button v-if="!props.inManagementMode" type="button" class="button is-ghost px-0" :class="{ 'has-text-warning': props.isPinned, 'has-text-grey': !props.isPinned }" :title="$t('tooltip.toggle_pin')" @click.stop="$emit('toggle-pin', props.account.id)" :aria-label="$t('tooltip.toggle_pin')">
                 <LucidePin />
             </button>
