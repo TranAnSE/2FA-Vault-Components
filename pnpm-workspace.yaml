@@ -59,3 +59,8 @@ overrides:
   postcss@<=8.5.17: '>=8.5.18'
   vitest@>=4.0.0 <4.1.0: '>=4.1.0'
   js-yaml@^3.13.1: '>=4.3.1'
+
+# The workspace uses the hoisted nodeLinker to avoid npm error
+# when its node_modules dir is browsed by 2FAuth/WebExt npm commands.
+# See https://github.com/npm/cli/issues/4411, https://github.com/npm/cli/issues/9079
+nodeLinker: hoisted

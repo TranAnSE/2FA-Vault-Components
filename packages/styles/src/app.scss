@@ -19,7 +19,7 @@ $blue: hsl(217, 71%, 53%);
 $purple: hsl(271, 100%, 71%);
 $red: hsl(348, 86%, 61%);
 
-@use '../node_modules/bulma/sass' as bulma with (
+@use '../../../node_modules/bulma/sass' as bulma with (
   $black: $black,
   $black-bis: $black-bis,
   $black-ter: $black-ter,
@@ -46,10 +46,10 @@ $red: hsl(348, 86%, 61%);
   $container-offset: 400px,
 );
 
-@use '../node_modules/bulma/sass/utilities' as bulma-utils;
-@use '../node_modules/bulma/sass/elements' as bulma-elements;
-@use '../node_modules/bulma/sass/form' as bulma-form;
-@use '../node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css';
+@use '../../../node_modules/bulma/sass/utilities' as bulma-utils;
+@use '../../../node_modules/bulma/sass/elements' as bulma-elements;
+@use '../../../node_modules/bulma/sass/form' as bulma-form;
+@use '../../../node_modules/bulma-checkradio/dist/css/bulma-checkradio.min.css';
 
 :root {
   --bulma-link-h: 229deg;
