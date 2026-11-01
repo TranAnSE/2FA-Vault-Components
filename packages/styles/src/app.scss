@@ -1046,7 +1046,7 @@ button.button.tag.is-white,
   border-width: 1px !important;
   background-color: bulma-utils.$white;
 }
-.tfa-checkbox .is-checkradio[type="checkbox"]+label::before {
+.tfa-checkradio .is-checkradio[type="checkbox"]+label::before {
   border-color: bulma-utils.$grey;
 }
 :root.dark .is-checkradio[type="checkbox"]+label::before {
@@ -1860,4 +1860,24 @@ a > svg.lucide, svg.lucide.inline {
 .toggle-active .button {
   width: 100%;
   height: 100%;
+}
+
+.favorite-icon {
+  position: absolute;
+  margin-left: -2rem;
+  margin-top: .5rem;
+}
+
+.tfa-min-height {
+  min-height: 60px;
+}
+
+.tfa-table img {
+  height: 0.75em;
+  width: 0.75em;
+  margin-right: .1em;
+}
+
+.tfa-table td {
+  vertical-align: middle;
 }
