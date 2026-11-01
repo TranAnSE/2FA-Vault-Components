@@ -141,7 +141,7 @@
                         <input class="is-checkradio is-small" :class="props.colorScheme == 'dark' ? 'is-white':'is-info'" :id="'ckb_' + props.account.id" :value="props.account.id" type="checkbox" :name="'ckb_' + props.account.id" v-model="selectedTwofaccountIds"  />
                         <label tabindex="0" class="" :for="'ckb_' + props.account.id" v-on:keypress.space.prevent="selectAccount(props.account.id)"></label>
                     </span>
-                    <div v-else-if="props.inManagementMode" class="tfa-cell tfa-checkbox">
+                    <div v-else class="tfa-cell tfa-checkbox">
                         <div class="field">
                             <input class="is-checkradio is-small" :class="props.colorScheme == 'dark' ? 'is-white':'is-info'" :id="'ckb_' + props.account.id" :value="props.account.id" type="checkbox" :name="'ckb_' + props.account.id" v-model="selectedTwofaccountIds"  />
                             <label tabindex="0" :for="'ckb_' + props.account.id" v-on:keypress.space.prevent="selectAccount(props.account.id)"></label>
@@ -151,12 +151,6 @@
                         <LucideStar v-if="props.account.is_favorite" class="is-clickable" :class="props.colorScheme == 'dark' ? 'has-text-warning-dark' : 'has-text-warning-dark-invert'" @click="$emit('toggle-is-favorite', props.account.id)" :strokeWidth="1" fill="#ffb400" :title="$t('tooltip.remove_from_favorites')" />
                         <LucideStar v-else class="is-clickable" :class="props.colorScheme == 'dark' ? 'has-text-grey-dark' : 'has-text-grey-light'" @click="$emit('toggle-is-favorite', props.account.id)" :strokeWidth="1" :fill="colorScheme == 'dark' ? '#111' : '#f5f5f5'" :title="$t('tooltip.set_as_favorite')" />
                     </span>
-                </div>
-                <div class="tfa-cell tfa-checkbox" v-else-if="props.inManagementMode">
-                    <div class="field">
-                        <input class="is-checkradio is-small" :class="props.colorScheme == 'dark' ? 'is-white':'is-info'" :id="'ckb_' + props.account.id" :value="props.account.id" type="checkbox" :name="'ckb_' + props.account.id" v-model="selectedTwofaccountIds"  />
-                        <label tabindex="0" :for="'ckb_' + props.account.id" v-on:keypress.space.prevent="selectAccount(props.account.id)"></label>
-                    </div>
                 </div>
             </transition>
             <!-- Account, service, badges -->
